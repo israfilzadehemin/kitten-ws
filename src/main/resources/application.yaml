@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/kitten-az
+    username: postgres
+    password: xiaominote9
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    open-in-view: true
+  data:
+    web:
+      pageable:
+        page-parameter: current
+        max-page-size: 15
+
+
