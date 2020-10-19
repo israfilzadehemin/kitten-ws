@@ -3,22 +3,26 @@ package com.kitten.kittenws.service;
 import com.kitten.kittenws.entity.Breed;
 import com.kitten.kittenws.exception.NoBreedsException;
 import com.kitten.kittenws.repository.BreedRepository;
+import com.kitten.kittenws.tool.ValidationTool;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
 public class BreedService {
+    private final ValidationTool validationTool;
+
     private final BreedRepository breedRepository;
 
-    public Page<Breed> getAllBreeds(Pageable page) {
-        if (breedRepository.findAll(page).stream().count() == 0)
-            throw new NoBreedsException();
-        return breedRepository.findAll(page);
+    public Optional<Page<Breed>> getAllBreeds(Pageable page) {
+        return Optional.of( breedRepository.findAll(page));
+    }
 
+    public Optional<Breed> getBreedById(String id) {
+        return breedRepository.findById(Long.parseLong(id));
     }
 }

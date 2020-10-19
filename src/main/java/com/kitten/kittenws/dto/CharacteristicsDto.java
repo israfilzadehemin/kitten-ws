@@ -2,8 +2,10 @@ package com.kitten.kittenws.dto;
 
 import com.kitten.kittenws.entity.Characteristics;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class CharacteristicsDto {
 
     private long id;

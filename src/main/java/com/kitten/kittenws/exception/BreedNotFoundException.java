@@ -5,9 +5,9 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+@Getter
 @ResponseStatus(HttpStatus.NOT_FOUND)
 @AllArgsConstructor
-@Getter
-public class NoBreedsException extends KittenWsException {
+public class BreedNotFoundException extends KittenWsException {
     private final String url;
 }

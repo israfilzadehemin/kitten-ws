@@ -3,12 +3,14 @@ package com.kitten.kittenws.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kitten.kittenws.entity.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
+@NoArgsConstructor
 public class BreedDto {
     private long id;
     private String name;
@@ -29,4 +31,5 @@ public class BreedDto {
         breed.getResponsibilities().forEach(r -> this.responsibilities.add(new ResponsibilityDto(r)));
         breed.getProducts().forEach(p -> this.products.add(new ProductDto(p)));
     }
+
 }
