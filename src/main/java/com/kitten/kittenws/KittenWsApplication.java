@@ -66,12 +66,12 @@ public class KittenWsApplication {
 
             Arrays.asList(royalCanin, pedigree, whiskas).forEach(producerRepository::save);
 
-            Product babyCat = new Product("Babycat");
-            Product kitten = new Product("Kitten");
-            Product adult = new Product("Adult");
-            Product young = new Product("Young");
-            Product soupWhiskas = new Product("Soup");
-            Product canWhiskas = new Product("Can");
+            Product babyCat = new Product("Babycat", 1);
+            Product kitten = new Product("Kitten", 5);
+            Product adult = new Product("Adult", 3);
+            Product young = new Product("Young", 2);
+            Product soupWhiskas = new Product("Soup", 11);
+            Product canWhiskas = new Product("Can", 9);
 
             Arrays.asList(babyCat, kitten, adult, young, soupWhiskas, canWhiskas).forEach(productRepository::save);
 
@@ -137,6 +137,10 @@ public class KittenWsApplication {
             Set<Product> britishProducts = new HashSet<>();
             britishProducts.add(soupWhiskas);
             britishProducts.add(kitten);
+            britishProducts.add(adult);
+            britishProducts.add(babyCat);
+            britishProducts.add(canWhiskas);
+            britishProducts.add(young);
 
             Set<Product> norwegianProducts = new HashSet<>();
             norwegianProducts.add(adult);

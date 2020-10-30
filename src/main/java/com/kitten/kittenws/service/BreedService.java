@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -23,6 +24,11 @@ public class BreedService {
     }
 
     public Optional<Breed> getBreedById(String id) {
+        validationTool.checkParsabilityToLong(id);
         return breedRepository.findById(Long.parseLong(id));
+    }
+
+    public Optional<List<Breed>> getBreedsByFirstLetter(String letter) {
+        return breedRepository.findByNameStartsWith(letter);
     }
 }

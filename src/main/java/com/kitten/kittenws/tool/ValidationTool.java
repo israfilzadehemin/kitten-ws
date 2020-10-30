@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ValidationTool {
-    public boolean checkParsabilityToLong(String id, String url) {
+    public boolean checkParsabilityToLong(String id) {
         try{
             Long.parseLong(id);
             return true;
         } catch (NumberFormatException exception) {
-            throw new InvalidInputException(url);
+            throw new InvalidInputException();
         }
     }
 }

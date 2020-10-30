@@ -45,8 +45,9 @@ public class Product {
     )
     private Category category;
 
-    public Product(String name) {
+    public Product(String name, double price) {
         this.name = name;
+        this.price = price;
     }
 
     @Override

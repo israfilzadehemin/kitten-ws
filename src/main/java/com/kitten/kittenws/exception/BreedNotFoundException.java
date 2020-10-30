@@ -7,7 +7,5 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Getter
 @ResponseStatus(HttpStatus.NOT_FOUND)
-@AllArgsConstructor
 public class BreedNotFoundException extends KittenWsException {
-    private final String url;
 }
