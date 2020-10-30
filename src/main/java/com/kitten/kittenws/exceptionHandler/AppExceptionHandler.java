@@ -4,6 +4,7 @@ import com.kitten.kittenws.entity.KittenError;
 import com.kitten.kittenws.exception.BreedNotFoundException;
 import com.kitten.kittenws.exception.InvalidInputException;
 import com.kitten.kittenws.exception.NoBreedsException;
+import com.kitten.kittenws.exception.NoContactException;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ public class AppExceptionHandler {
 
     @ExceptionHandler(InvalidInputException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<?> handlerInvalidInput(InvalidInputException exception) {
+    public ResponseEntity<?> handleInvalidInput(InvalidInputException exception) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new KittenError(exception.getMessage(), "400", "You entered invalid input"));
     }
 
@@ -30,8 +31,14 @@ public class AppExceptionHandler {
 
     @ExceptionHandler(BreedNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<?> handlerInvalidInput(BreedNotFoundException exception) {
+    public ResponseEntity<?> handleInvalidInput(BreedNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new KittenError(exception.getMessage(), "404", "Breed does not exist"));
+    }
+
+    @ExceptionHandler(NoContactException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<?> handleInvalidInput(NoContactException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new KittenError(exception.getMessage(), "404", "There is no any contact in database"));
     }
 
 }

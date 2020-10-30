@@ -24,7 +24,7 @@ public class KittenWsApplication {
 //    @Profile("dev")
     CommandLineRunner createInitialUsers(BreedRepository breedRepository, CategoryRepository categoryRepository, CharacteristicsRepository characteristicsRepository,
                                          PeriodRepository periodRepository, ProducerRepository producerRepository, ProductRepository productRepository,
-                                         ResponsibilityRepository responsibilityRepository) {
+                                         ResponsibilityRepository responsibilityRepository, ContactRepository contactRepository) {
         return args -> {
 
             Category cat = new Category("Cat");
@@ -179,6 +179,14 @@ public class KittenWsApplication {
 
             Arrays.asList(british, scottish, siam, van, norwegian).forEach(breedRepository::save);
 
+            Contact contact = new Contact(
+                    "Baku",
+                    "(+99470) 559-56-56",
+                    "From 9.00 a.m. to 19.00 p.m",
+                    "https://instagram.com",
+                    "https://facebook.com",
+                    "https://twitter.com");
+            contactRepository.save(contact);
         };
     }
 
