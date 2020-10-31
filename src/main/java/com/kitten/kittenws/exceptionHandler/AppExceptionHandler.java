@@ -1,11 +1,7 @@
 package com.kitten.kittenws.exceptionHandler;
 
 import com.kitten.kittenws.entity.KittenError;
-import com.kitten.kittenws.exception.BreedNotFoundException;
-import com.kitten.kittenws.exception.InvalidInputException;
-import com.kitten.kittenws.exception.NoBreedsException;
-import com.kitten.kittenws.exception.NoContactException;
-import lombok.extern.log4j.Log4j;
+import com.kitten.kittenws.exception.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,14 +27,26 @@ public class AppExceptionHandler {
 
     @ExceptionHandler(BreedNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<?> handleInvalidInput(BreedNotFoundException exception) {
+    public ResponseEntity<?> handleBreedNotFound(BreedNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new KittenError(exception.getMessage(), "404", "Breed does not exist"));
     }
 
     @ExceptionHandler(NoContactException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<?> handleInvalidInput(NoContactException exception) {
+    public ResponseEntity<?> handleNoContact(NoContactException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new KittenError(exception.getMessage(), "404", "There is no any contact in database"));
+    }
+
+    @ExceptionHandler(NoAboutException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<?> handleNoAbout(NoAboutException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new KittenError(exception.getMessage(), "404", "There is no any about info in database"));
+    }
+
+    @ExceptionHandler(NoServiceException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<?> handleNoService(NoServiceException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new KittenError(exception.getMessage(), "404", "There is no any service in database"));
     }
 
 }

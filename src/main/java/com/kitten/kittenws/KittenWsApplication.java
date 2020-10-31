@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @SpringBootApplication
@@ -22,9 +23,12 @@ public class KittenWsApplication {
 
     @Bean
 //    @Profile("dev")
-    CommandLineRunner createInitialUsers(BreedRepository breedRepository, CategoryRepository categoryRepository, CharacteristicsRepository characteristicsRepository,
-                                         PeriodRepository periodRepository, ProducerRepository producerRepository, ProductRepository productRepository,
-                                         ResponsibilityRepository responsibilityRepository, ContactRepository contactRepository) {
+    CommandLineRunner createInitialUsers(BreedRepository breedRepository, CategoryRepository categoryRepository,
+                                         CharacteristicsRepository characteristicsRepository, PeriodRepository periodRepository,
+                                         ProducerRepository producerRepository, ProductRepository productRepository,
+                                         ResponsibilityRepository responsibilityRepository, ContactRepository contactRepository,
+                                         AboutRepository aboutRepository, ServiceRepository serviceRepository) {
+
         return args -> {
 
             Category cat = new Category("Cat");
@@ -187,6 +191,16 @@ public class KittenWsApplication {
                     "https://facebook.com",
                     "https://twitter.com");
             contactRepository.save(contact);
+
+            About about = new About("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+            aboutRepository.save(about);
+
+            List<Service> services = Arrays.asList(
+                    new Service("Providing regular info about your sweet friend", "services/service.jpg"),
+                    new Service("Providing regular info about your sweet friend", "services/service.jpg"),
+                    new Service("Providing regular info about your sweet friend", "services/service.jpg")
+            );
+            serviceRepository.saveAll(services);
         };
     }
 

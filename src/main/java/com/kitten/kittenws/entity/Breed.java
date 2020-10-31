@@ -22,7 +22,7 @@ public class Breed {
     @Column(name = "breed_name")
     private String name;
 
-    @Column(name = "breed_info")
+    @Column(name = "breed_info", length = 1500)
     private String info;
 
     @Column(name = "breed_image")
